@@ -42,8 +42,10 @@ int main(int argc, char* argv[])
 	float chessSquareSize = 1;
 	const char* outputFile = "default_cam_calib.yaml";
 
-	//////// Parse arguments ////////
-
+	//
+	// Parse arguments
+	//
+	
 	if (argc - 1 < 2 || argc - 1 > 4) {
 		usage();
 		return 1;
@@ -63,7 +65,9 @@ int main(int argc, char* argv[])
 		outputFile = argv[4];
 	}
 
-	//////// Capture images ////////
+	//
+	// Capture images
+	//
 
 	VideoCapture cap{cameraIndex};
 
@@ -89,6 +93,7 @@ int main(int argc, char* argv[])
 
 			cv::setWindowTitle(windowName, windowName + " (" + std::to_string(capturedFrames.size()) + ")");
 
+			// Add some nice effects
 			cv::threshold(currFrameFlipped, currFrameFlipped, 70, 255, CV_THRESH_BINARY_INV);
 			cv::imshow(windowName, currFrameFlipped);
 			cv::waitKey(60);
@@ -100,7 +105,9 @@ int main(int argc, char* argv[])
 
 	cv::setWindowTitle(windowName, windowName);
 
-	//////// Detect chessboards ////////
+	//
+	// Detect chessboards
+	//
 
 	vector<vector<Point3f>> objectPoints;
 	vector<vector<Point2f>> imagePoints;
@@ -137,7 +144,9 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-	//////// Calibrate camera ////////
+	//
+	// Calibrate camera
+	//
 
 	Mat firstFrame = capturedFrames.front();
 	Mat cameraMatrix, distCoeffs;
@@ -153,15 +162,19 @@ int main(int argc, char* argv[])
 		tvecs,
 		0);
 
-	//////// Write output file ////////
-	
+	//
+	// Write output files
+	//
+
 	{
 		FileStorage fs{outputFile, FileStorage::WRITE};
 		fs << "cameraMatrix" << cameraMatrix;
 		fs << "distCoeffs" << distCoeffs;
 	}
 
-	//////// Display results ////////
+	//
+	// Display results
+	//
 
 	std::cout
 		<< "reprojection error: " << reprojectionError << std::endl

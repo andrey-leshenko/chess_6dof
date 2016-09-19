@@ -24,7 +24,7 @@ using cv::SVD;
 using cv::Vec3f;
 
 const vector<int> cameraIndexes{1, 2};
-const vector<const char*> cameraCalib{"ps_eye.yaml", "ps_eye.yaml"};
+const vector<const char*> cameraCalib{"../../calib_data/ps_eye.yaml", "../../calib_data/ps_eye.yaml"};
 const Size chessboardSize{8, 5};
 const float chessSquareSize = 3.025;
 
@@ -191,11 +191,11 @@ int main()
 
 		for (int i = 0; i < frames.size(); i++) {
 			bool found = cv::solvePnP(initialPoints,
-			imagePoints[i],
-			cameraMatrixes[i],
-			Mat{},
-			rvecs[i],
-			tvecs[i]);
+				imagePoints[i],
+				cameraMatrixes[i],
+				Mat{},
+				rvecs[i],
+				tvecs[i]);
 
 			if (!found) {
 				std::cerr << "Couldn't calibrate camera." << std::endl;
