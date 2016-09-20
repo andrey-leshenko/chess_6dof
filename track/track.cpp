@@ -207,6 +207,10 @@ int main()
 			cameraTransforms[i] = Affine3d(rvecs[i], tvecs[i]);
 			Mat rtMatrix = Mat{cameraTransforms[i].matrix}.rowRange(0, 3);
 			projectionMatrixes[i] = cameraMatrixes[i] * rtMatrix;
+			// We found how to transform points so a camera placed
+			// at the origin will see them. Assuming that points were at
+			// the origin in the first place, the location of the camera
+			// is the inverse of that transformation.
 			cameraTransforms[i] = cameraTransforms[i].inv();
 		}
 	}
@@ -242,6 +246,8 @@ int main()
 		cv::triangulatePoints(projectionMatrixes[0], projectionMatrixes[1], imagePoints[0], imagePoints[1], homogeneous);
 
 		vector<Point3f> currPoints;
+		// Using a vector of points or the matrix before transposition doesn't work
+		// because of some strange OpenCV problems.
 		cv::convertPointsFromHomogeneous(homogeneous.t(), currPoints);
 
 		Point3f currPosition = centroid(currPoints);
