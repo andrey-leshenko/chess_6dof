@@ -268,7 +268,7 @@ There codes does the following tasks:
      to find the difference in rotation between the current points and the initial points.
   6. Display the results using the glorious `cv::viz` module.
 
-### Continuing From Here
+### Continuing from Here
 
 Now that you understand the theory, it is a good time to take a look at the code.
 As always, when it comes to learning something new, Google is your best friend.
