@@ -2,7 +2,7 @@
 
 Get started by reading the [Full Guide](docs/guide.md).
 
-This repository contains code for tracking a chessboard in realtime using two cameras and triangulation.
+This repository contains code for tracking a chessboard in real-time using two cameras and triangulation.
 The position and rotation of the chessboard are calculated at each step. The rotation is found using the Kabsch SVD method.
 The image processing is done using OpenCV, and the output is visualized using the cv::viz module.
 
