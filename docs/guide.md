@@ -77,9 +77,9 @@ expressed by more complex models that extend the pinhole camera model.
 
 This is the pinhole camera formula that shows how a point in world space `(X, Y, Z)` is mapped to the image `(u, v)`:
 
-![Camera equation](image/camera_equation_small.png)
+![Camera equation](images/camera_equation_small.png)
 
-![Camera equation](image/camera_equation_large.png)
+![Camera equation](images/camera_equation_large.png)
 
 - `X, Y, Z` are the coordinates of a point in world space.
 - `u, v` are the coordinates in pixels of the point when projected onto the image.
@@ -272,8 +272,3 @@ There codes does the following tasks:
 
 Now that you understand the theory, it is a good time to take a look at the code.
 As always, when it comes to learning something new, Google is your best friend.
-
-Written by:
-* Andrey Leshenko
-* Eli Tarnarutsky
-* Shir Amir
